@@ -12,9 +12,9 @@
   box-sizing: border-box;
 }
 
-/* Устанавливаем базовый размер шрифта на странице*/
 html {
-  font-size: 18px;
+  font-size: 18px; /* Устанавливаем базовый размер шрифта на странице*/
+  scroll-behavior: smooth; /* Плавная прокрутка при переходе по якорям */
 }
 /*Устанавливаем основной шрифт на странице(стиль)*/
 body {
@@ -22,12 +22,12 @@ body {
     "Inter", sans-serif; /* sans-serif - запасной шрифт, на случай, если Inter не загрузится */
   font-size: 1rem; /* Такой же как и размер базового шрифта, но масштабируемый */
   line-height: 1.67; /* межстрочный интервал */
-  letter-spacing: -0.02em; /* небольшое сжатие, чтобы буквы стояли плотнее (по макету требуется легкая плотность букв)*/
+  letter-spacing: -0.02em; /* Трекинг по макету: лёгкое сжатие для плотности */
   margin: 0; /* сброс дефолтных отступов для чистого старта вёрстки */
   padding: 0; /* сброс дефолтных отступов для чистого старта вёрстки */
 }
 
-/* Убираем стоящие по умолчанию внешние и внутренние отступы у абзацев и параграфов, чтобы при необходимости установить свои*/
+/* Сброс отступов у заголовков и абзацев для чистого старта */
 h1,
 h2,
 h3,
@@ -57,6 +57,26 @@ button {
   font-size: inherit;
 }
 
+a {
+  text-decoration: none; /* убираем нижнее подчеркивание */
+  color: inherit; /* Цвет наследуется то родителя */
+}
+/* добавляем фокус стиль для большей доступности */
+a:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+ul {
+  list-style: none; /* убираем маркеры, которые стоят по умолчанию */
+  margin: 0; /* убираем дефолтные внешние отступы для чистой верстки */
+  padding: 0; /* убираем дефолтные внутренние отступы, чтобы потом при необходимости установить свои */
+}
+
+li {
+  margin: 0; /* убираем дефолтные внешние отступы для чистой верстки */
+  padding: 0; /* убираем дефолтные внутренние отступы, чтобы потом при необходимости установить свои */
+}
 /*Убираем стили, стоящие по умолчанию у кнопок, добавляем свои, которые у большинства кнопок на сайте*/
 button {
   border: none; /* убираем рамку браузера */
@@ -74,4 +94,140 @@ button {
 button:focus {
   outline: 2px solid var(--dark-blue);
   outline-offset: 2px;
+}
+
+/* Эффект при нажатии */
+button:active {
+  font-size: 0.9rem;
+  padding: 1.2rem 2.3rem; /* визуально «вдавливаем»: верх/низ чуть больше, лево/право чуть меньше */
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25); /* внутренняя тень = эффект вдавленности */
+  transform: translateY(1px); /* чуть опускаем вниз, чтобы было реалистичнее */
+}
+
+.header {
+  width: 100%;
+  background-color: var(--dark-blue); /*  устанавливаем цвет фона у шапки */
+  position: fixed; /* прикрепляем шапку сайта к своему месту, чтобы, даже при скролле сайта она оставалась вверху */
+  top: 0; /* Фиксация шапки в самом верху экрана */
+}
+
+.container {
+  max-width: 1480px; /* установили максимальную ширину контейнера */
+  width: 100%; /* если ширина экрана меньше max-width, то контейнер будет занимать весь экран, сжимаясь */
+  margin: 0 auto; /* центрируем контейнер */
+  display: flex; /* располагаем элементы в строку */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  align-items: center; /* выравниваем элементы по вертикали */
+}
+
+/* Задаем размеры логотипа */
+.container__logo {
+  width: 10.6rem;
+  height: 1.9rem;
+}
+.container__list {
+  display: flex; /* располагаем элементы в строку */
+  width: max-content; /* контейнер занимает ровно столько места, чтобы умещались элементы */
+  margin-left: auto; /* Прижимаем навигацию к правому краю, отделяя от логотипа, чтобы соответствовать макету */
+}
+
+.hamburger {
+  display: none; /* скрываем бургер на десктопе */
+  cursor: pointer; /* делаем меню бургер визуально кликабельным */
+  flex-direction: column;
+  gap: 12px; /* расстояние между полосками бургера */
+}
+
+/* Устанавливаем стиль для "полосок" бургер меню */
+.humburger__line {
+  width: 40px;
+  height: 2px;
+  background-color: white;
+}
+
+.list-toggle {
+  display: none; /* скрываем сам чекбокс, он нужен только как переключатель */
+}
+.list-items {
+  display: flex; /* располагаем элементы списка в строку, чтобы соответствовать макету */
+  gap: 32px;
+}
+
+.dropdown-main {
+  width: max-content; /* ширина ровно такая, чтобы все элементы уместились */
+  position: relative; /* точка отсчета позиционирования для выпадающего меню*/
+}
+
+/* Убираем дефолтную стрелочку браузера */
+.dropdown-main__title::-webkit-details-marker {
+  display: none;
+}
+
+/* Стилизуем заголовки выпадающих списков */
+.dropdown-main__title {
+  list-style: none; /* убираем дефолтный стиль */
+  display: flex; /* располагаем заголовок и стрелку в одну строку */
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  cursor: pointer; /* делаем выпадающий список визуально кликабельным */
+}
+
+.dropdown-main__title:hover {
+  color: var(--light-blue); /* Подсветка при наведении */
+}
+
+/* Кастомная стрелка через псевдоэлемент */
+.dropdown-main__title::after {
+  content: "";
+  right: 14px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  transform: translateY(+40%);
+  background-image: url("../images/down-arrow-light.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Когда открыто — стрелка смотрит вверх */
+.dropdown-main[open] .dropdown-main__title::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.dropdown-main__list {
+  position: absolute; /* абсолютное позиционирование выпадающего меню, чтобы можно было его сделать поверх остального контента */
+  z-index: 1000; /* поднимаем элемент поверх остальных элементов */
+  background-color: var(--dark-blue);
+  padding: 0 5px;
+  border: 1px solid #ddd; /* добавляем рамку, чтобы выпадающее меню визуально отделить от остального контента */
+  border-top: none; /*  убираем рамку сверху */
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15); /* добавляем тень, чтобы еще больше визуально отделить выпадающее меню */
+}
+
+/* Устанавливаем стиль для элементов выпадающего меню */
+.dropdown-main__list > li {
+  color: white;
+  font-size: 0.89rem;
+}
+
+.dropdown-main__list > li:hover {
+  color: var(--light-blue); /* Подсветка при наведении */
+}
+.buttons {
+  display: flex; /* располагаем кнопки в строку */
+  gap: 24px;
+  margin-left: 48px; /* отступ от меню */
+}
+
+/* Чтобы соответствовать макету, стилизуем одну из кнопок */
+.buttons_button-login {
+  background-color: var(--yellow);
+  color: var(--dark-blue);
+}
+.buttons__button-try-free {
 }

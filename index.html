@@ -13,5 +13,61 @@
 
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <div class="container">
+        <img src="images/logo-white.svg" alt="" class="container__logo" />
+        <div class="container__list">
+          <!-- Скрытый чекбокс — переключатель бургер-меню на узких экранах -->
+          <input type="checkbox" id="list-toggle" class="list-toggle" />
+          <!-- "Иконка" меню гамбургера для узких экранов, на десктопе она будет скрыта -->
+          <label for="list-toggle" class="hamburger"
+            ><!-- Привязываем лейбл к чекбоксу -->
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+            <span class="hamburger__line"></span>
+          </label>
+          <!-- Навигация: на десктопе — горизонтальное меню, на мобильных — бургер -->
+          <ul class="list-items">
+            <li>
+              <details class="dropdown-main">
+                <summary class="dropdown-main__title">Products</summary>
+                <ul class="dropdown-main__list">
+                  <li><a href="#">Overview</a></li>
+                  <li><a href="#">Pricing</a></li>
+                  <li><a href="#">Customer stories</a></li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details class="dropdown-main">
+                <summary class="dropdown-main__title">Resourses</summary>
+                <ul class="dropdown-main__list">
+                  <li><a href="#">Blog</a></li>
+                  <li><a href="#">Guides & tutorials</a></li>
+                  <li><a href="#">Help center</a></li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details class="dropdown-main">
+                <summary class="dropdown-main__title">Company</summary>
+                <ul class="dropdown-main__list">
+                  <li><a href="#">About us</a></li>
+                  <li><a href="#">Careers</a></li>
+                  <li><a href="#">Media kit</a></li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
+        <div class="buttons">
+          <button class="buttons_button-login" type="button">Login</button>
+          <button class="buttons__button-try-free" type="button">
+            Try Whitepace free
+          </button>
+        </div>
+      </div>
+    </header>
+  </body>
 </html>
