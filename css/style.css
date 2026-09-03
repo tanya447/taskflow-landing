@@ -104,6 +104,7 @@ button:active {
   transform: translateY(1px); /* чуть опускаем вниз, чтобы было реалистичнее */
 }
 
+/* Фиксированная шапка: всегда видна при скролле */
 .header {
   width: 100%;
   background-color: var(--dark-blue); /*  устанавливаем цвет фона у шапки */
@@ -111,6 +112,7 @@ button:active {
   top: 0; /* Фиксация шапки в самом верху экрана */
 }
 
+/* Центрированный контейнер с Flex-выравниванием элементов шапки */
 .container {
   max-width: 1480px; /* установили максимальную ширину контейнера */
   width: 100%; /* если ширина экрана меньше max-width, то контейнер будет занимать весь экран, сжимаясь */
@@ -132,6 +134,7 @@ button:active {
   margin-left: auto; /* Прижимаем навигацию к правому краю, отделяя от логотипа, чтобы соответствовать макету */
 }
 
+/* Иконка-бургер: три полоски, видна только на мобильных */
 .hamburger {
   display: none; /* скрываем бургер на десктопе */
   cursor: pointer; /* делаем меню бургер визуально кликабельным */
@@ -140,7 +143,7 @@ button:active {
 }
 
 /* Устанавливаем стиль для "полосок" бургер меню */
-.humburger__line {
+.hamburger__line {
   width: 40px;
   height: 2px;
   background-color: white;
@@ -230,4 +233,109 @@ button:active {
   color: var(--dark-blue);
 }
 .buttons__button-try-free {
+}
+
+@media (max-width: 1490px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (max-width: 1152px) {
+  .hamburger {
+    display: flex; /* делаем полоски бургер меню видимыми */
+  }
+
+  /* Выезжающая панель навигации: скрыта по умолчанию, выезжает справа */
+  .container__list {
+    position: fixed; /* закрепляем бургер меню, чтобы оно не прокручивалось вместе со страницей */
+    top: 90px;
+    right: -100%; /* скрываем справа бургер меню */
+    width: 80%; /* меню будет занимать 80% ширины всего экрана  */
+    height: 100vh; /* высота меню будет равна высоте экрана */
+    background-color: var(--dark-blue);
+    flex-direction: column;
+    padding: 10px 20px 10px 10px;
+    transition: right 0.3s ease-in-out; /* плавное появление меню */
+    z-index: 1000; /* поднимаем меню поверх остальных элементов */
+    border: 1px solid #ddd; /* добавляем рамку, чтобы выпадающее меню визуально отделить от остального контента */
+    border-top: none; /*  убираем рамку сверху */
+  }
+
+  #list-toggle:checked ~ .container__list {
+    right: 0; /* Когда чекбокс активен — меню видно */
+  }
+  /* На мобильных пункты меню вертикально */
+  .list-items {
+    gap: 24px;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .list-items li {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  /* убираем свойства, которые нужны бали только на широких экранах */
+  .dropdown-main__list {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+  /* меняем местами кнопки и меню бургер, чтобы соответствовать макету */
+  .hamburger {
+    order: 2;
+    margin-left: 24px;
+  }
+
+  .buttons {
+    margin-left: auto;
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .buttons__button-try-free {
+    display: none; /* трекинг макета: скрываем кнопку */
+  }
+}
+
+@media (max-width: 460px) {
+  /* трекинг макета: уменьшаем размер логотипа */
+  .container__logo {
+    width: 134px;
+    height: 24px;
+  }
+  .container__list {
+    margin-top: -32px;
+  }
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+    justify-content: space-between;
+  }
+
+  .buttons {
+    margin-left: 10px;
+  }
+}
+@media (max-width: 360px) {
+  /* Снова меняем местами бургер меню и кнопку, обеспечиваем перенос кнопки на новую строку */
+  .hamburger {
+    order: 1;
+  }
+
+  .buttons {
+    order: 2;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+  .container {
+    flex-wrap: wrap;
+  }
 }

@@ -16,18 +16,20 @@
   <body>
     <header class="header">
       <div class="container">
-        <img src="images/logo-white.svg" alt="" class="container__logo" />
+        <img
+          src="images/logo-white.svg"
+          alt="Логотип Whitepace"
+          class="container__logo"
+        />
+
+        <!-- Чекбокс теперь СРАЗУ после логотипа, на одном уровне с .container__list -->
+        <input type="checkbox" id="list-toggle" class="list-toggle" />
+        <label for="list-toggle" class="hamburger">
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </label>
         <div class="container__list">
-          <!-- Скрытый чекбокс — переключатель бургер-меню на узких экранах -->
-          <input type="checkbox" id="list-toggle" class="list-toggle" />
-          <!-- "Иконка" меню гамбургера для узких экранов, на десктопе она будет скрыта -->
-          <label for="list-toggle" class="hamburger"
-            ><!-- Привязываем лейбл к чекбоксу -->
-            <span class="hamburger__line"></span>
-            <span class="hamburger__line"></span>
-            <span class="hamburger__line"></span>
-          </label>
-          <!-- Навигация: на десктопе — горизонтальное меню, на мобильных — бургер -->
           <ul class="list-items">
             <li>
               <details class="dropdown-main">
@@ -41,7 +43,7 @@
             </li>
             <li>
               <details class="dropdown-main">
-                <summary class="dropdown-main__title">Resourses</summary>
+                <summary class="dropdown-main__title">Resources</summary>
                 <ul class="dropdown-main__list">
                   <li><a href="#">Blog</a></li>
                   <li><a href="#">Guides & tutorials</a></li>
@@ -61,6 +63,7 @@
             </li>
           </ul>
         </div>
+
         <div class="buttons">
           <button class="buttons_button-login" type="button">Login</button>
           <button class="buttons__button-try-free" type="button">
