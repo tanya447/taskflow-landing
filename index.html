@@ -15,7 +15,7 @@
   </head>
   <body>
     <header class="header">
-      <div class="container">
+      <div class="container container-header">
         <img
           src="images/logo-white.svg"
           alt="Логотип Whitepace"
@@ -78,8 +78,8 @@
       </div>
     </header>
     <section class="hero-section">
-      <div class="container">
-        <div class="container__text-block">
+      <div class="container container-hero">
+        <div class="container-hero__text-block">
           <h1>Get More Done with whitepace</h1>
           <p class="white-text">
             Project management software that enables your teams to collaborate,
@@ -95,7 +95,51 @@
           </button>
         </div>
         <!-- Заглушка под изображение для макета. В будущем заменить на <img> или background-image -->
-        <div class="container__image-placeholder"></div>
+        <div class="container-hero__image-placeholder"></div>
+      </div>
+    </section>
+    <section class="work-management">
+      <div class="container container-work-management">
+        <div class="project-management">
+          <div class="project-management__text-block">
+            <h2>Project <span class="highlight-word">Management</span></h2>
+            <p>
+              Images, videos, PDFs and audio files are supported. Create math
+              expressions and diagrams directly from the app. Take photos with
+              the mobile app and save them to a note.
+            </p>
+            <button class="get-started" type="button">
+              <span class="white-text">Get Started</span>
+              <img
+                src="images/button-arrow-right.svg"
+                alt="Стрелка вправо"
+                class="button-image"
+              />
+            </button>
+          </div>
+          <!-- Заглушка под изображение для макета. В будущем заменить на <img> или background-image -->
+          <div class="project-management__image-placeholder"></div>
+        </div>
+        <div class="work-together">
+          <img
+            src="../images/Work-Together-Image.svg"
+            alt=""
+            class="work-together__image"
+          />
+          <div class="project-management__text-block">
+            <h2>Work <span class="highlight-word">together</span></h2>
+            <p>
+              With whitepace, share your notes with your colleagues and collaborate on them. You can also publish a note to the internet and share the URL with others.
+            </p>
+            <button class="try-it-now" type="button">
+              <span class="white-text">Try it now</span>
+              <img
+                src="images/button-arrow-right.svg"
+                alt="Стрелка вправо"
+                class="button-image"
+              />
+            </button>
+        </div>
       </div>
     </section>
   </body>

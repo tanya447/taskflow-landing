@@ -95,6 +95,9 @@ button {
   outline: none; /* убираем стандартный контур */
   border-radius: 8px; /* скругляем углы */
   color: white; /* цвет текста на кнопке */
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 /* Добавляем фокус-стиль, так как поставили outline:none */
@@ -111,16 +114,22 @@ button:active {
   transform: translateY(1px); /* чуть опускаем вниз, чтобы было реалистичнее */
 }
 
+/* делаем так, чтобы прискролле шапка была только наверху */
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   width: 100%;
   background-color: var(--dark-blue); /*  устанавливаем цвет фона у шапки */
 }
-
-/* Центрированный контейнер с Flex-выравниванием элементов шапки */
+/*Центрируем все контейнеры  */
 .container {
   max-width: 1480px; /* установили максимальную ширину контейнера */
   width: 100%; /* если ширина экрана меньше max-width, то контейнер будет занимать весь экран, сжимаясь */
   margin: 0 auto; /* центрируем контейнер */
+}
+/* Центрированный контейнер с Flex-выравниванием элементов шапки */
+.container-header {
   display: flex; /* располагаем элементы в строку */
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -236,11 +245,6 @@ button:active {
   background-color: var(--yellow);
   color: var(--dark-blue);
 }
-.button-try-free {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
 
 .button-image {
   width: 10px;
@@ -250,22 +254,22 @@ button:active {
 .hero-section {
   background-color: var(--dark-blue);
 }
-/* Контейнер hero-секции: сетка из двух равных колонок, отступы по вертикали */
-.hero-section > div.container {
+/* Контейнер hero: сетка 2 колонки, отступы сверху/снизу для контроля видимой части фона */
+.container-hero {
   padding-top: 140px;
   padding-bottom: 140px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 60px;
 }
-.container__text-block > p {
+.container-hero__text-block > p {
   margin-top: 24px;
 }
-.container__text-block > button {
+.container-hero__text-block > button {
   margin-top: 60px;
 }
 /* Заглушка под изображение: пропорции 3:2, цвет фона как в макете */
-.container__image-placeholder {
+.container-hero__image-placeholder {
   width: 100%;
   aspect-ratio: 3 / 2;
   background-color: var(--light-blue);
@@ -275,6 +279,71 @@ button:active {
   background-position: center;
 }
 
+.work-management {
+}
+.container-work-management {
+  margin-top: 140px;
+  margin-bottom: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+.project-management {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+  align-items: center;
+}
+.project-management__text-block > h2 {
+  margin-bottom: 24px;
+}
+.get-started {
+  margin-top: 60px;
+}
+.white-text {
+}
+.button-image {
+}
+/* Заглушка под изображение: пропорции 5:4, цвет фона как в макете */
+.project-management__image-placeholder {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  background-color: var(--light-blue);
+  /* Если позже будет картинка фоном — раскомментировать  и вставить путь к изображению*/
+  /* background-image: url(''); */
+  background-size: cover;
+  background-position: center;
+}
+.work-together {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 114px;
+  align-items: center;
+}
+.work-together__image {
+  width: 100%;
+  height: auto;
+  max-height: 710px;
+  display: block;
+}
+
+.work-together__text-block > h2 {
+  margin-bottom: 24px;
+}
+.try-it-now {
+  margin-top: 60px;
+}
+
+/* Эффект фона под отдельным словом: используем inline-block + background, чтобы фон был ровно под текстом */
+.highlight-word {
+  position: relative;
+  display: inline-block; /* чтобы фон был ровно под текстом, а не на всю строку */
+  background-image: url("../images/Element.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 70%;
+  background-position: center bottom;
+  padding: 0px 0px 25px 0;
+}
 @media (max-width: 1490px) {
   .container {
     padding-left: 32px;
@@ -337,11 +406,35 @@ button:active {
     margin-left: auto;
     order: 1;
   }
+
+  .container-hero {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+
+  .container-hero__text-block > h1 {
+    text-align: center;
+  }
+
+  .container-hero__text-block > p {
+    text-align: center;
+  }
+
+  .container-hero__text-block > button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+  }
 }
 
 @media (max-width: 768px) {
-  .buttons__button-try-free {
+  .button-try-free {
     display: none; /* трекинг макета: скрываем кнопку */
+  }
+
+  h1 {
+    font-size: 54px;
   }
 }
 
@@ -357,6 +450,9 @@ button:active {
   .container {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  .container-header {
     justify-content: space-between;
   }
 
@@ -375,7 +471,11 @@ button:active {
     margin-top: 10px;
     margin-left: 5px;
   }
-  .container {
+  .container-header {
     flex-wrap: wrap;
+  }
+
+  h1 {
+    font-size: 36px;
   }
 }
